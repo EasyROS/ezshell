@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <package>
-    <name>ShellService</name>
+    <name>ezshell</name>
     <version>0.0.0</version>
     <description>
-        shellservice is a shell system to use this
+        ezshell is a shell system for using
     </description>
 
     <maintainer email="1328788930@qq.com">dean</maintainer>
@@ -15,9 +15,5 @@
     <author email="ls.dean.ch@gmail.com">dean</author>
 
     <buildtool_depend>catkin</buildtool_depend>
-
-    <!--<build_depend>TL</build_depend>-->
-
-	<!--<run_depend>TL</run_depend>-->
 
 </package>
