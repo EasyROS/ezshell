@@ -1,6 +1,13 @@
 #include <iostream>
 #include <vector>
 
+#define Executable false;
+
+#define Error = -1;
+#define Stoped = 0;
+#define Started = 1;
+#define Running = 2;
+
 using namespace std;
 
 class sys {
