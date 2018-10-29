@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package>
+    <name>ShellService</name>
+    <version>0.0.0</version>
+    <description>
+        shellservice is a shell system to use this
+    </description>
+
+    <maintainer email="1328788930@qq.com">dean</maintainer>
+    <maintainer email="ls.dean.ch@gmail.com">dean</maintainer>
+
+    <license>MIT</license>
+
+    <author email="1328788930@qq.com">dean</author>
+    <author email="ls.dean.ch@gmail.com">dean</author>
+
+    <buildtool_depend>catkin</buildtool_depend>
+
+    <!--<build_depend>TL</build_depend>-->
+
+	<!--<run_depend>TL</run_depend>-->
+
+</package>
