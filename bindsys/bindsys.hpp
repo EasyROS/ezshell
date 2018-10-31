@@ -1,12 +1,11 @@
 #include <iostream>
 #include <vector>
 
-#define Executable false;
-
 #define Error = -1;
 #define Stoped = 0;
 #define Started = 1;
 #define Running = 2;
+#define Executable 3;
 
 using namespace std;
 
