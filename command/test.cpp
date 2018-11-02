@@ -12,9 +12,19 @@ int main() {
         cout << C->setColorByStatus("颜色测试", i) << endl;
         i++;
     }
-    while(true){
-        C->getCommand();
-    }
+    string buff;
 
-    return 0;
+    while (true) {
+        C->echo();
+        //cout << buff << endl;
+        C->run(C->getCommand());
+//        if (buff.compare("ls") == 0)
+//            cout << buff << endl;
+//        if (buff.compare("cd") == 0)
+//            cout << buff << endl;
+//        if (buff.compare("rm") == 0)
+//            cout << buff << endl;
+//        if (buff.compare("mkdir") == 0)
+//            cout << buff << endl;
+    }
 }

@@ -4,6 +4,9 @@ project(ezshell)
 find_package(catkin REQUIRED COMPONENTS
 
 )
+find_package(Boost REQUIRED COMPONENTS system)
+include_directories(${Boost_INCLUDE_DIR})
+link_directories(${Boost_LIBRARY_DIR})
 
 catkin_package(
         CATKIN_DEPENDS

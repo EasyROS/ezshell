@@ -17,6 +17,10 @@ public:
 
     void setName(string name);
 
+    sys * toChild(string name);
+
+    sys * searchChild(string name);
+
     virtual void bind(sys *s) = 0;
 
     virtual bool exec() = 0;
