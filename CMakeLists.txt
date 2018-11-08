@@ -3,7 +3,7 @@ project(ezshell)
 
 find_package(catkin REQUIRED COMPONENTS
 
-)
+        )
 find_package(Boost REQUIRED COMPONENTS system)
 include_directories(${Boost_INCLUDE_DIR})
 link_directories(${Boost_LIBRARY_DIR})
@@ -18,17 +18,18 @@ option(Test "This is a option for Test, test the package" OFF)
 
 set(SOURCES_DIRECTORIES
         EZIO
+        EZCommand
         #command
-)
+        )
 
 foreach (DIRECTORY ${SOURCES_DIRECTORIES})
     message(STATUS "-- Sources: Adding ${DIRECTORY}/")
-    include (${DIRECTORY}/source.cmake)
-    set (PREFIXED_SOURCES)
+    include(${DIRECTORY}/source.cmake)
+    set(PREFIXED_SOURCES)
     foreach (SOURCE ${Source})
-        set (PREFIXED_SOURCES ${PREFIXED_SOURCES} ${DIRECTORY}/${SOURCE})
+        set(PREFIXED_SOURCES ${PREFIXED_SOURCES} ${DIRECTORY}/${SOURCE})
     endforeach (SOURCE)
-    set (ALL_SOURCES ${ALL_SOURCES} ${PREFIXED_SOURCES})
+    set(ALL_SOURCES ${ALL_SOURCES} ${PREFIXED_SOURCES})
 endforeach (DIRECTORY)
 
 foreach (SSSS ${ALL_SOURCES})
@@ -36,11 +37,15 @@ foreach (SSSS ${ALL_SOURCES})
 endforeach (SSSS)
 
 foreach (DIRECTORY ${SOURCES_DIRECTORIES})
-if(${Test} STREQUAL "ON")
-    message(STATUS "-- Sources: Test ${DIRECTORY}/test.cpp")
-    add_executable (${DIRECTORY} ${ALL_SOURCES} ${DIRECTORY}/test.cpp)
-endif()
+    if (${Test} STREQUAL "ON")
+        message(STATUS "-- Sources: Test ${DIRECTORY}/test.cpp")
+        add_executable(${DIRECTORY} ${ALL_SOURCES} ${DIRECTORY}/test.cpp)
+    else ()
+        add_library(${DIRECTORY} ${ALL_SOURCES})
+        target_link_libraries(${DIRECTORY} ${catkin_LIBRARIES})
+    endif ()
 endforeach (DIRECTORY)
 
-#target_link_libraries(Test ${catkin_LIBRARIES})
+
+#target_link_libraries(ezshell ${catkin_LIBRARIES})
 

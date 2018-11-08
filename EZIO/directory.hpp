@@ -9,20 +9,11 @@
 
 class directory : public EZIO {
 public:
-    directory(string name) : EZIO(name) {}
+    directory(string name);
 
-    virtual ~directory() {
-        while (!children.empty()) {
-            vector<EZIO *>::iterator it = children.begin();
-            SAFE_DELETE(*it);
-            children.erase(it);
-        }
-    }
+    virtual ~directory();
 
-    void Add(EZIO *ez) {
-        ez->setParent(this);
-        children.push_back(ez);
-    }
+    void Add(EZIO *ez);
 
 private:
     directory();
