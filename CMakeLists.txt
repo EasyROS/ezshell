@@ -17,8 +17,8 @@ include_directories(${catkin_INCLUDE_DIRS})
 option(Test "This is a option for Test, test the package" OFF)
 
 set(SOURCES_DIRECTORIES
-        bindsys
-        command
+        EZIO
+        #command
 )
 
 foreach (DIRECTORY ${SOURCES_DIRECTORIES})

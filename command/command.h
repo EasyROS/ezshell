@@ -20,17 +20,19 @@ public:
 
     string setColorByStatus(string buff, int state);
 
-    string getCommand();
+    void getCommand();
 
-    string findCommand(string commstr);
+    void findCommand();
 
     string dir;
+
+    string commstr;
 
     vector<string> format_space(string buff);
 
     vector<string> format_dir(string buff);
 
-    void run(string commstr);
+    void run();
 
     void ls(string buff);
 
@@ -45,4 +47,6 @@ public:
     void echo();
 
     sys *node;
+
+    vector<string> mem;
 };

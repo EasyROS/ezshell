@@ -6,15 +6,17 @@ using namespace std;
 
 sys::sys() {}
 
-sys::~sys() {}
-
-void sys::setName(string name) {
+sys *sys::setName(string name) {
     this->name = name;
+    return this;
 }
 
 sys *sys::toChild(string name) {
-    if(name == ".." || name == "../"){
-        return this->parent;
+    if (name == ".." || name == "../") {
+        if (this->parent)
+            return this->parent;
+        else
+            throw "Not found such node !";
     }
     int i;
     for (i = 0; i < this->chirldren.size(); i++) {
@@ -29,7 +31,7 @@ sys *sys::searchChild(string name) {
     int i, j = 0;
     for (i = 0; i < this->chirldren.size(); i++) {
         while (j <= name.length()) {
-            if(j == name.length())
+            if (j == name.length())
                 return this->chirldren[i];
             else if (name[j] == this->chirldren[i]->name[j])
                 j++;

@@ -1,4 +1,4 @@
 set(Source
-        command.cpp
-        command.h
+        #command.cpp
+        #command.h
         )
