@@ -8,12 +8,13 @@ using namespace std;
 
 class EZIO {
 public:
+    EZIO();
     EZIO(string name) : name(name) {};
 
     virtual ~EZIO() {};
 
     virtual void Add(EZIO *ez) = 0;
-
+    virtual void run() = 0;
 
     vector<EZIO *> getChildren() {
         return this->children;
@@ -45,6 +46,22 @@ public:
 
     }
 
+    EZIO *set_exec() {
+        this->exec = true;
+    }
+
+    EZIO *set_not_exec() {
+        this->exec = false;
+    }
+
+    EZIO *set_global() {
+        this->global = true;
+    }
+
+    EZIO *set_not_global() {
+        this->global = false;
+    }
+
     EZIO *set_hidden() {
         this->hidden = true;
         return this;
@@ -74,8 +91,8 @@ protected:
     EZIO *parent;
 
 private:
-    EZIO();
 
+    bool global;
     bool hidden;
     bool exec;
 

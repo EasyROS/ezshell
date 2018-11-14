@@ -12,7 +12,9 @@ public:
     directory(string name);
 
     virtual ~directory();
+    void run(){
 
+    };
     void Add(EZIO *ez);
 
 private:

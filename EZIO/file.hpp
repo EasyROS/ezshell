@@ -4,9 +4,11 @@
 
 class file : public EZIO {
 public:
-    file(string name) : EZIO(name) {}
+    file(string name);
 
     virtual ~file() {}
+
+    virtual void run() = 0;
 
     void Add(EZIO *ez) {}
 
