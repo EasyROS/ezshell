@@ -2,16 +2,9 @@
 #include <iostream>
 using namespace std;
 
-class Command {
+class EZCommand {
 public:
-    Command(string name, EZIO *root);
+    EZCommand();
 
-    ~Command();
-
-    void run();
-
-    void tab();
-
-    string command_dir;
-    string command_str;
+    ~EZCommand();
 };

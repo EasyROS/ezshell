@@ -20,6 +20,7 @@ set(SOURCES_DIRECTORIES
         EZIO
         EZCommand
         EZTools
+        EZServer
         #command
         )
 
