@@ -7,12 +7,24 @@
 
 #include <zmq.hpp>
 #include <iostream>
+#include <boost/thread.hpp>
 
 using namespace std;
 
-int main(int argc, char *argv[]) {
+void run(){
+    //cout << EZServer::getRecv() << endl;
+    if(EZServer::getRecv() == "shutdown"){
+        EZServer::sendToClient("power is offed");
 
-    EZServer::startup();
+        sleep(1);
+        EZServer::poweroff();
+    }
+}
+
+int main(int argc, char *argv[]) {
+    boost::thread server_start(EZServer::startup);
+
+    server_start.detach();
 
     return 0;
 }

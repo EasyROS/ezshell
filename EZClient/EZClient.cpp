@@ -22,7 +22,7 @@ void EZClient::send(string buff) {
 
 void EZClient::recv() {
     zmq_recv(s, buffer, sizeof(buffer) - 1, 0);
-    printf("recv:%s\n", buffer);
+    //printf("recv:%s\n", buffer);
 }
 
 string EZClient::getrecv() {

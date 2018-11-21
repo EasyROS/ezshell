@@ -4,9 +4,18 @@ project(ezshell)
 find_package(catkin REQUIRED COMPONENTS
         ZeroMQ
         )
-find_package(Boost REQUIRED COMPONENTS system)
+find_package(Boost REQUIRED COMPONENTS
+        filesystem
+        system
+        thread)
+
+if (NOT Boost_FOUND)
+    message("未发现Boost")
+endif ()
+
+aux_source_directory(. srcs)
+
 include_directories(${Boost_INCLUDE_DIR})
-link_directories(${Boost_LIBRARY_DIR})
 
 catkin_package(
         CATKIN_DEPENDS
@@ -14,6 +23,7 @@ catkin_package(
 )
 ### include TL package
 include_directories(${catkin_INCLUDE_DIRS})
+
 
 option(Test "This is a option for Test, test the package" OFF)
 
@@ -43,11 +53,12 @@ endforeach (SSSS)
 foreach (DIRECTORY ${SOURCES_DIRECTORIES})
     if (${Test} STREQUAL "ON")
         message(STATUS "-- Sources: Test ${DIRECTORY}/test.cpp")
-        add_executable(${DIRECTORY} ${ALL_SOURCES} ${DIRECTORY}/test.cpp ${catkin_LIBRARIES})
+        add_executable(${DIRECTORY} ${ALL_SOURCES} ${DIRECTORY}/test.cpp ${srcs})
         target_link_libraries(${DIRECTORY} ${catkin_LIBRARIES})
+        target_link_libraries(${DIRECTORY} ${Boost_LIBRARIES})
     else ()
         add_library(${DIRECTORY} ${ALL_SOURCES})
-        target_link_libraries(${DIRECTORY} ${catkin_LIBRARIES})
+        target_link_libraries(${DIRECTORY} ${catkin_LIBRARIES} ${Boost_LIBRARIES})
     endif ()
 endforeach (DIRECTORY)
 
