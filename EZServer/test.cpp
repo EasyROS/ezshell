@@ -11,20 +11,12 @@
 
 using namespace std;
 
-void run(){
-    //cout << EZServer::getRecv() << endl;
-    if(EZServer::getRecv() == "shutdown"){
-        EZServer::sendToClient("power is offed");
-
-        sleep(1);
-        EZServer::poweroff();
-    }
-}
-
 int main(int argc, char *argv[]) {
     boost::thread server_start(EZServer::startup);
 
     server_start.detach();
+
+    EZServer::run();
 
     return 0;
 }

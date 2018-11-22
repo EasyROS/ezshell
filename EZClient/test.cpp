@@ -17,6 +17,6 @@ int main(int argc, char *argv[]) {
         cout << EZC->getrecv() << endl;
         if (EZC->getrecv() == "exit")
             break;
-        sleep(1);
+        usleep(100);
     }
 }

@@ -14,6 +14,14 @@ directory *root;
 void *soc;
 char buffer[1024] = {0};
 
+void sendToClient(string buff) {
+
+    char buffer_[1024] = {0};
+
+    strcpy(buffer_, buff.c_str());
+    zmq_send(soc, buffer_, strlen(buffer_) + 1, 0);
+}
+
 namespace EZServer {
 
     void init(directory *rp) {
@@ -30,17 +38,22 @@ namespace EZServer {
 
         while (power) {
             zmq_recv(socket, buffer, sizeof(buffer) - 1, 0);
-            sleep(1);
+            usleep(600);
         }
     }
 
-    void sendToClient(string buff) {
+    void run() {
+        while (true)
+            if (strcmp(buffer, "shutdown") == 0) {
+                sendToClient("power is offed");
 
-        char buffer_[1024] = {0};
-
-        strcpy(buffer_, buff.c_str());
-        //cout << buffer_ << endl;
-        zmq_send(soc, buffer_, strlen(buffer_) + 1, 0);
+                usleep(500);
+                power = false;
+                break;
+            } else {
+                sendToClient("Test success");
+                usleep(500);
+            }
     }
 
     string getRecv() {

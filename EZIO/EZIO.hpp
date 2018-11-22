@@ -48,18 +48,34 @@ public:
 
     EZIO *set_exec() {
         this->exec = true;
+        return this;
     }
 
     EZIO *set_not_exec() {
         this->exec = false;
+        return this;
     }
 
     EZIO *set_global() {
         this->global = true;
+        return this;
     }
 
     EZIO *set_not_global() {
         this->global = false;
+        return this;
+    }
+
+    bool _global() {
+        return this->global;
+    }
+
+    bool _hidden() {
+        return this->hidden;
+    }
+
+    bool _exec(){
+        return this->exec;
     }
 
     EZIO *set_hidden() {

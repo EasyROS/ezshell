@@ -7,4 +7,6 @@ public:
     EZCommand();
 
     ~EZCommand();
+    
+    EZIO *Command;
 };

@@ -21,10 +21,10 @@ public:
 class test : public EZCommand {
 public:
     test() {
-        EZIO *T = new test_command("test");
+        this->Command = new test_command("test");
 
-        ROOT::pRoot->Add(T);
-        T->set_global()->set_exec()->set_hidden();
+        ROOT::pRoot->Add(this->Command);
+        this->Command->set_global()->set_exec()->set_hidden();
     }
 
     ~test() {
@@ -38,7 +38,8 @@ namespace EZC {
 
 int main() {
 
-    cout << ROOT::pRoot->getChildren()[0]->get_name() << endl;
+    cout << ROOT::pRoot->getChildren()[0]->get_name() << ROOT::pRoot->getChildren()[0]->_exec()
+         << ROOT::pRoot->getChildren()[0]->_hidden() << ROOT::pRoot->getChildren()[0]->_global() << endl;
 
     ROOT::pRoot->getChildren()[0]->run();
 
