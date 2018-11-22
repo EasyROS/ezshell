@@ -33,6 +33,8 @@ set(SOURCES_DIRECTORIES
         EZTools
         EZServer
         EZClient
+        EZInput
+        EZOutput
         #command
         )
 
