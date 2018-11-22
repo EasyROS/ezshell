@@ -12,15 +12,6 @@ bool power = true;
 directory *root;
 
 void *soc;
-char buffer[1024] = {0};
-
-void sendToClient(string buff) {
-
-    char buffer_[1024] = {0};
-
-    strcpy(buffer_, buff.c_str());
-    zmq_send(soc, buffer_, strlen(buffer_) + 1, 0);
-}
 
 namespace EZServer {
 
@@ -28,36 +19,28 @@ namespace EZServer {
         root = rp;
     }
 
-    void startup() {
+    void startup(void *run(char* buff)) {
         zmq::context_t context(1);
         zmq::socket_t socket(context, ZMQ_REP);
 
+        char buffer[1024] = {0};
         socket.bind("tcp://*:9999");
 
         soc = socket;
 
         while (power) {
             zmq_recv(socket, buffer, sizeof(buffer) - 1, 0);
-            usleep(600);
+            run(buffer);
+            usleep(1);
         }
     }
 
-    void run() {
-        while (true)
-            if (strcmp(buffer, "shutdown") == 0) {
-                sendToClient("power is offed");
+    void sendToClient(string buff) {
 
-                usleep(500);
-                power = false;
-                break;
-            } else {
-                sendToClient("Test success");
-                usleep(500);
-            }
-    }
+        char buffer_[1024] = {0};
 
-    string getRecv() {
-        return buffer;
+        strcpy(buffer_, buff.c_str());
+        zmq_send(soc, buffer_, strlen(buffer_) + 1, 0);
     }
 
     void poweroff() {

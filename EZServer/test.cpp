@@ -11,12 +11,15 @@
 
 using namespace std;
 
+void *run(char *buff) {
+    cout << buff << endl;
+    EZServer::sendToClient(buff);
+}
+
+
 int main(int argc, char *argv[]) {
-    boost::thread server_start(EZServer::startup);
 
-    server_start.detach();
-
-    EZServer::run();
+    EZServer::startup(&run);
 
     return 0;
 }
