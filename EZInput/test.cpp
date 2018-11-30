@@ -1,28 +1,19 @@
 #include "EZInput.hpp"
 
 /// Debug [redefined] ----#ifndef #define #endif
-//#include "EZServer.hpp"
+//#include "EZInput.hpp"
 
 #include "../EZIO/directory.hpp"
-
-#include <zmq.hpp>
+#include "ClientToServer.hpp"
 #include <iostream>
-
-/// Thread Server Test
-//#include <boost/thread.hpp>
+#include <zconf.h>
 
 using namespace std;
 
-/// Callback function
-void *run(char *buff) {
-    cout << buff << endl;
-    EZServer::sendToClient(buff);
-}
+int main() {
 
-
-int main(int argc, char *argv[]) {
-
-    EZServer::startup(&run);
+    ClientToServer *CTS = new ClientToServer();
+    CTS->get_list("test");
 
     return 0;
 }

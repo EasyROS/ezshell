@@ -18,11 +18,11 @@ void EZClient::init() {
 void EZClient::send(string buff) {
     snprintf(buffer, sizeof(buffer), buff.c_str());
     zmq_send(s, buffer, strlen(buffer) + 1, 0);
+    strcpy(buffer, "");
 }
 
 void EZClient::recv() {
     zmq_recv(s, buffer, sizeof(buffer) - 1, 0);
-    //printf("recv:%s\n", buffer);
 }
 
 string EZClient::getrecv() {

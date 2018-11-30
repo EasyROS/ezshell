@@ -1,50 +1,37 @@
+/***
+ * TODO command line input or read
+ */
+
 #include <iostream>
-#include <zmq.hpp>
-#include <zconf.h>
-#include "../EZIO/directory.hpp"
 
 using namespace std;
 
-#ifndef _EZSERVER_HPP_
-#define _EZSERVER_HPP_
+#ifndef _EZINPUT_HPP_
+#define _EZINPUT_HPP_
 
-bool power = true;
-directory *root;
-
-void *soc;
-
-namespace EZServer {
-
-    void init(directory *rp) {
-        root = rp;
-    }
-
-    void startup(void *run(char* buff)) {
-        zmq::context_t context(1);
-        zmq::socket_t socket(context, ZMQ_REP);
-
-        char buffer[1024] = {0};
-        socket.bind("tcp://*:9999");
-
-        soc = socket;
-
-        while (power) {
-            zmq_recv(socket, buffer, sizeof(buffer) - 1, 0);
-            run(buffer);
-            usleep(1);
+namespace Input {
+    string setColorByStatus(string buff, int state) {
+        switch (state) {
+            case -1:
+                return "\033[31;1m" + buff + "\033[0m";
+            case 0:
+                return "\033[35;1m" + buff + "\033[0m";
+            case 1:
+                return "\033[37;1m" + buff + "\033[0m";
+            case 2:
+                return "\033[34;1m" + buff + "\033[0m";
+            case 3:
+                return "\033[32;1m" + buff + "\033[0m";
+            case 4:
+                return "\033[33;1m" + buff + "\033[0m";
+            default:
+                return setColorByStatus("Not found the STATE!", -1);
         }
     }
 
-    void sendToClient(string buff) {
-
-        char buffer_[1024] = {0};
-
-        strcpy(buffer_, buff.c_str());
-        zmq_send(soc, buffer_, strlen(buffer_) + 1, 0);
-    }
-
-    void poweroff() {
-        power = false;
+    string directory_TAB(string directory){
+        return directory;
     }
 }
+
 #endif
