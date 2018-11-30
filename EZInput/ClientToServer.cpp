@@ -19,3 +19,9 @@ string ClientToServer::get_list(string dir) {
     //cout << dir << this->Client->getrecv() << endl;
     return "";
 }
+
+string ClientToServer::cmd(string str) {
+    this->Client->send(_run + str);
+    this->Client->recv();
+    return "";
+}

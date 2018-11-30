@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 project(ezshell)
-
+set(CMAKE_INCLUDE_PATH "/usr/include")
+set(CMAKE_LIBRARY_PATH "/usr/lib/x86_64-linux-gnu/libncurses.so")
 find_package(catkin REQUIRED COMPONENTS
         ZeroMQ
         )
@@ -57,10 +58,10 @@ foreach (DIRECTORY ${SOURCES_DIRECTORIES})
         message(STATUS "-- Sources: Test ${DIRECTORY}/test.cpp")
         add_executable(${DIRECTORY} ${ALL_SOURCES} ${DIRECTORY}/test.cpp ${srcs})
         target_link_libraries(${DIRECTORY} ${catkin_LIBRARIES})
-        target_link_libraries(${DIRECTORY} ${Boost_LIBRARIES})
+        target_link_libraries(${DIRECTORY} ${Boost_LIBRARIES} ${CMAKE_LIBRARY_PATH})
     else ()
         add_library(${DIRECTORY} ${ALL_SOURCES})
-        target_link_libraries(${DIRECTORY} ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+        target_link_libraries(${DIRECTORY} ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${CMAKE_LIBRARY_PATH})
     endif ()
 endforeach (DIRECTORY)
 
