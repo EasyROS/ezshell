@@ -12,7 +12,16 @@ EZClient::~EZClient() {
 void EZClient::init() {
     this->context = zmq_ctx_new();
     this->s = zmq_socket(context, ZMQ_REQ);
-    zmq_connect(this->s, "tcp://127.0.0.1:9999");
+
+    string address;
+    string method = "tcp://";
+    string host = "127.0.0.1";
+    string port = "9999";
+    address = method + host + ":" + port;
+
+    char *addr = (char *) address.data();
+
+    zmq_connect(this->s, addr);
 }
 
 void EZClient::send(string buff) {
