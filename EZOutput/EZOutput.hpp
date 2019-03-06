@@ -1,6 +1,7 @@
 #include <iostream>
 #include <zmq.hpp>
 #include <zconf.h>
+#include "../EZCommand/EZCommand.hpp"
 #include "../EZIO/directory.hpp"
 
 using namespace std;
