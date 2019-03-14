@@ -1,14 +1,13 @@
+#pragma once
 /***
  * TODO command line input or read
  */
-
 #include <iostream>
 
 using namespace std;
 
 #ifndef _EZINPUT_HPP_
 #define _EZINPUT_HPP_
-
 namespace Input {
     string setColorByStatus(string buff, int state) {
         switch (state) {
