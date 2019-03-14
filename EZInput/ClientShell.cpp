@@ -32,9 +32,14 @@ void ClientShell::run() {
 
         string buff;
         cout << Input::setColorByStatus("➜ ", this->state);
-        cin >> buff;
-        string cmd = switch_demo(buff);
+        while(true){
+            char c = getchar();
+            if(c == '\n')
+                break;
+            buff += c;
+        }
 
+        string cmd = switch_demo(buff);
         CTS->talk(cmd);
 
         if(buff == "shutdown")
@@ -45,6 +50,7 @@ void ClientShell::run() {
 string ClientShell::switch_demo(string buff) {
     vector<string> cmd = EZTools::format(buff, ' ');
     string tmp;
+    cout << (cmd[0] == "cd") << endl;
     if (cmd[0] == "ls"){
         this->info();
         cmd[0] = _get_list;
