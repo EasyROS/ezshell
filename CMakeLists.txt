@@ -19,6 +19,10 @@ aux_source_directory(. srcs)
 include_directories(${Boost_INCLUDE_DIR})
 
 catkin_package(
+        INCLUDE_DIRS EZInput EZOutput EZTools
+
+        LIBRARIES ezshell
+
         CATKIN_DEPENDS
         ZeroMQ
 )
@@ -60,11 +64,12 @@ foreach (DIRECTORY ${SOURCES_DIRECTORIES})
         target_link_libraries(${DIRECTORY} ${catkin_LIBRARIES})
         target_link_libraries(${DIRECTORY} ${Boost_LIBRARIES} ${CMAKE_LIBRARY_PATH})
     else ()
-        add_library(${DIRECTORY} ${ALL_SOURCES})
+        add_library(${DIRECTORY} SHARED ${ALL_SOURCES})
         target_link_libraries(${DIRECTORY} ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${CMAKE_LIBRARY_PATH})
     endif ()
 endforeach (DIRECTORY)
 
+add_library(ezshell SHARED ${ALL_SOURCES})
 
-#target_link_libraries(ezshell ${catkin_LIBRARIES})
+target_link_libraries(ezshell ${catkin_LIBRARIES})
 

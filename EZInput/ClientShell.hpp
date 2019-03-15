@@ -8,13 +8,13 @@ public:
     ClientShell();
     ~ClientShell();
 
+    void success();
+    void error();
+    void info();
     void run();
 
 private:
     int state = 3;
-    void success();
-    void error();
-    void info();
     string switch_demo(string buff);
 };
 
