@@ -23,7 +23,9 @@ void ClientShell::error() {
 void ClientShell::info() {
     this->state = 3;
 }
-
+int ClientShell::getState() {
+    return this->state;
+}
 void ClientShell::run() {
 
     ClientToServer *CTS = new ClientToServer();
@@ -45,6 +47,7 @@ void ClientShell::run() {
         if(buff == "shutdown")
             break;
     }
+    delete CTS;
 }
 
 string ClientShell::switch_demo(string buff) {
