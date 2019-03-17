@@ -29,5 +29,5 @@ string ClientToServer::cmd(string str) {
 string ClientToServer::talk(string str) {
     this->Client->send( str);
     this->Client->recv();
-    return "";
+    return this->Client->getrecv();
 }
