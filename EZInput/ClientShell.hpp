@@ -11,12 +11,10 @@ public:
     void success();
     void error();
     void info();
-    void run();
     int getState();
 
 private:
     int state = 3;
-    string switch_demo(string buff);
 };
 
 

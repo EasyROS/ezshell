@@ -10,10 +10,6 @@ public:
 
     ~ClientToServer();
 
-    string get_list(string dir);
-
-    string cmd(string str);
-
     string talk(string str);
 
     EZClient *Client;

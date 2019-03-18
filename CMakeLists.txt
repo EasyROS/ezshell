@@ -4,6 +4,7 @@ set(CMAKE_INCLUDE_PATH "/usr/include")
 set(CMAKE_LIBRARY_PATH "/usr/lib/x86_64-linux-gnu/libncurses.so")
 find_package(catkin REQUIRED COMPONENTS
         ZeroMQ
+        jsoncpp
         )
 find_package(Boost REQUIRED COMPONENTS
         filesystem
@@ -25,6 +26,7 @@ catkin_package(
 
         CATKIN_DEPENDS
         ZeroMQ
+        jsoncpp
 )
 ### include TL package
 include_directories(${catkin_INCLUDE_DIRS})

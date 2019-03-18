@@ -1,10 +1,7 @@
 #include "../EZIO/file.hpp"
 #include <iostream>
+#include <json/json.h>
 using namespace std;
-
-#define _get_list '\01'
-#define _change_dir '\02'
-#define _run '\03'
 
 class EZCommand {
 public:
@@ -13,4 +10,7 @@ public:
     ~EZCommand();
     
     EZIO *Command;
+
+    string pwd;
+    Json::Value data;
 };

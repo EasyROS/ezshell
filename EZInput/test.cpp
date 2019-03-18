@@ -15,13 +15,7 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
 
-    ClientToServer *CTS = new ClientToServer();
-    CTS->get_list("ls");
-
-    CTS->cmd("cmd");
-
-    ClientShell *CS = new ClientShell();
-    CS->run();
+    cout << "EZInput Test" << endl;
 
     return 0;
 }

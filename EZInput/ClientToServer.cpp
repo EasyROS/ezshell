@@ -10,20 +10,8 @@ ClientToServer::ClientToServer() {
 }
 
 ClientToServer::~ClientToServer() {
-
-}
-
-string ClientToServer::get_list(string dir) {
-    this->Client->send(_get_list + dir);
-    this->Client->recv();
-    //cout << dir << this->Client->getrecv() << endl;
-    return "";
-}
-
-string ClientToServer::cmd(string str) {
-    this->Client->send(_run + str);
-    this->Client->recv();
-    return "";
+    delete(this->Client);
+    delete this;
 }
 
 string ClientToServer::talk(string str) {
