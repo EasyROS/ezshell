@@ -1,3 +1,4 @@
 set(Source
-        EZServer.hpp
+        EZServer.h
+        EZServer.cpp
         )

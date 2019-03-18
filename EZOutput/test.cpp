@@ -1,4 +1,4 @@
-#include "EZOutput.hpp"
+#include "EZOutput.h"
 
 /// Debug [redefined] ----#ifndef #define #endif
 //#include "EZServer.hpp"

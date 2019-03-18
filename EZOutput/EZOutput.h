@@ -1,7 +1,7 @@
 #include <iostream>
 #include <zmq.hpp>
 #include <zconf.h>
-#include "../EZServer/EZServer.hpp"
+#include "../EZServer/EZServer.h"
 #include "../EZCommand/EZCommand.hpp"
 #include "../EZIO/directory.hpp"
 
@@ -14,8 +14,6 @@ using namespace std;
 
 namespace out {
 
-    void listen(void * call(char *)){
-        EZServer::startup(call);
-    }
+    void listen(void * call(char *));
 }
 #endif

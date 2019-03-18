@@ -1,3 +1,4 @@
 set(Source
-        EZOutput.hpp
+        EZOutput.h
+        EZOutput.cpp
         )
