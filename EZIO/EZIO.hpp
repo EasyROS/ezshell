@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include <json/json.h>
 #include <map>
 
 using namespace std;
@@ -14,7 +15,7 @@ public:
     virtual ~EZIO() {};
 
     virtual void Add(EZIO *ez) = 0;
-    virtual void run() = 0;
+    virtual Json::Value run() = 0;
 
     vector<EZIO *> getChildren() {
         return this->children;
@@ -101,13 +102,16 @@ public:
         this->info_list = info_list;
     }
 
+    string pwd;
+    string cmd;
+    string btn;
+
 protected:
     string name;
     vector<EZIO *> children;
     EZIO *parent;
 
 private:
-
     bool global;
     bool hidden;
     bool exec;

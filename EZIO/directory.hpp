@@ -12,7 +12,7 @@ public:
     directory(string name);
 
     virtual ~directory();
-    void run(){
+    Json::Value run(){
 
     };
     void Add(EZIO *ez);

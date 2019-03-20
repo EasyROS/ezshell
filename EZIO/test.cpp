@@ -5,7 +5,7 @@ class test : public file {
 public:
     test(string name) : file(name) {}
 
-    void run() {
+    Json::Value run() {
         cout << "test_run" << endl;
     }
 };

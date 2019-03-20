@@ -13,7 +13,7 @@ class test_command : public file {
 public:
     test_command(string name) : file(name) {}
 
-    void run() {
+    Json::Value run() {
         cout << "test_run" << endl;
     }
 };

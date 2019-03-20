@@ -1,6 +1,7 @@
 #pragma once
 
 #include "EZIO.hpp"
+#include <json/json.h>
 
 class file : public EZIO {
 public:
@@ -8,7 +9,7 @@ public:
 
     virtual ~file() {}
 
-    virtual void run() = 0;
+    virtual Json::Value run() = 0;
 
     void Add(EZIO *ez) {}
 
