@@ -44,7 +44,19 @@ public:
     }
 
     EZIO *searchChild(string name) {
-
+        if(name == "..")
+            return this->parent;
+        else if(name == ".")
+            return this;
+        else{
+            int i = 0;
+            for (; i < this->getChildren().size(); i++) {
+                if(this->getChildren()[i]->get_name() == name)
+                    return this->getChildren()[i];
+            }
+            if(i == this->getChildren().size())
+                throw "404";
+        }
     }
 
     EZIO *set_exec() {
