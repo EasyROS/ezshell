@@ -42,6 +42,7 @@ set(SOURCES_DIRECTORIES
         EZClient
         EZInput
         EZOutput
+        EZSocket
         #command
         )
 

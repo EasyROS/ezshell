@@ -10,11 +10,13 @@ using namespace std;
 class EZIO {
 public:
     EZIO();
+
     EZIO(string name) : name(name) {};
 
     virtual ~EZIO() {};
 
     virtual void Add(EZIO *ez) = 0;
+
     virtual Json::Value run() = 0;
 
     vector<EZIO *> getChildren() {
@@ -44,19 +46,40 @@ public:
     }
 
     EZIO *searchChild(string name) {
-        if(name == "..")
-            return this->parent;
-        else if(name == ".")
+        if (name == "..") {
+            if (this->parent)
+                return this->parent;
+            else
+                throw "404";
+        } else if (name == "." || name == "")
             return this;
-        else{
+        else {
             int i = 0;
             for (; i < this->getChildren().size(); i++) {
-                if(this->getChildren()[i]->get_name() == name)
+                if (this->getChildren()[i]->get_name() == name)
                     return this->getChildren()[i];
             }
-            if(i == this->getChildren().size())
+            if (i == this->getChildren().size())
                 throw "404";
         }
+    }
+
+    vector<string> getPWD() {
+        EZIO *T = this;
+        vector<string> pwdl;
+        while (true) {
+            try {
+                if (T->get_name() != "root") {
+                    pwdl.insert(pwdl.begin(), T->get_name());
+                    T = T->parent;
+                }else
+                    break;
+            } catch (std::bad_alloc error) {
+                break;
+            }
+
+        }
+        return pwdl;
     }
 
     EZIO *set_exec() {
@@ -66,6 +89,11 @@ public:
 
     EZIO *set_not_exec() {
         this->exec = false;
+        return this;
+    }
+
+    EZIO *set_not_view() {
+        this->view = false;
         return this;
     }
 
@@ -87,12 +115,41 @@ public:
         return this->hidden;
     }
 
-    bool _exec(){
+    bool _exec() {
         return this->exec;
+    }
+
+    bool _view() {
+        return this->exec;
+    }
+
+    bool _dir() {
+        return this->dir;
+    }
+
+    bool _file() {
+        return this->file;
+    }
+
+    EZIO *set_dir() {
+        this->dir = true;
+        this->file = false;
+        return this;
+    }
+
+    EZIO *set_file() {
+        this->file = true;
+        this->dir = false;
+        return this;
     }
 
     EZIO *set_hidden() {
         this->hidden = true;
+        return this;
+    }
+
+    EZIO *set_view() {
+        this->view = true;
         return this;
     }
 
@@ -127,6 +184,9 @@ private:
     bool global;
     bool hidden;
     bool exec;
+    bool file;
+    bool dir;
+    bool view;
 
     map<string, string> info_list;
 };

@@ -1,6 +1,8 @@
 #include "directory.hpp"
 
-directory::directory(string name) : EZIO(name) {}
+directory::directory(string name) : EZIO(name) {
+    this->set_dir();
+}
 
 directory::~directory() {
     while (!children.empty()) {
