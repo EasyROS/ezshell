@@ -47,10 +47,14 @@ public:
 
     EZIO *searchChild(string name) {
         if (name == "..") {
-            if (this->parent)
-                return this->parent;
-            else
+            try {
+                //cout << this->parent->get_name() << endl;
+                if (!this->parent->get_name().empty())
+                    return this->parent;
+            } catch (std::bad_alloc e) {
                 throw "404";
+            }
+
         } else if (name == "." || name == "")
             return this;
         else {
