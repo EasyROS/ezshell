@@ -11,7 +11,7 @@ class EZIO {
 public:
     EZIO();
 
-    EZIO(string name) : name(name) {};
+    EZIO(string name) : name(name), view(false) {};
 
     virtual ~EZIO() {};
 
@@ -72,7 +72,7 @@ public:
                 if (T->get_name() != "root") {
                     pwdl.insert(pwdl.begin(), T->get_name());
                     T = T->parent;
-                }else
+                } else
                     break;
             } catch (std::bad_alloc error) {
                 break;
@@ -120,7 +120,7 @@ public:
     }
 
     bool _view() {
-        return this->exec;
+        return this->view;
     }
 
     bool _dir() {
