@@ -178,6 +178,7 @@ public:
     string pwd;
     string cmd;
     string btn;
+    Json::Value res;
 
 protected:
     string name;
