@@ -10,8 +10,8 @@ using namespace std;
 int main(int argc, char *argv[]) {
     EZClient *EZC = new EZClient();
     while (true) {
-        string buff = "111111";
-        //cin >> buff;
+        string buff = "";
+        cin >> buff;
         EZC->send(buff);
         EZC->recv();
         cout << EZC->getrecv() << endl;
