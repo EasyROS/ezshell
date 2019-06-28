@@ -10,10 +10,10 @@ void EZServer::init(directory *rp) {
 }
 
 void EZServer::startup(void *run(char *buff)) {
-    zmq::context_t context(1);
+    zmq::context_t context(15);
     zmq::socket_t socket(context, ZMQ_REP);
 
-    char buffer[1024] = {0};
+    char buffer[1024 * 512] = {0};
     socket.bind("tcp://*:9999");
 
     soc = socket;
@@ -27,7 +27,7 @@ void EZServer::startup(void *run(char *buff)) {
 
 void EZServer::sendToClient(string buff) {
 
-    char buffer_[1024] = {0};
+    char buffer_[1024 * 512] = {0};
 
     strcpy(buffer_, buff.c_str());
     zmq_send(soc, buffer_, strlen(buffer_) + 1, 0);

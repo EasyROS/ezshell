@@ -27,7 +27,7 @@ int main() {
          << "Test children\t" << pTest->getChildren()[0]->get_name() << endl
          //<< "Node parent\t\t" << pNode->getParent()->get_name() << endl
          << "Test parent\t\t" << pTest->getParent()->get_name() << endl;
-    T->run();
+    //T->run();
     SAFE_DELETE(pRoot);
 
     return 0;

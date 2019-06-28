@@ -16,7 +16,7 @@ using namespace std;
 /// Callback function
 void *run(char *buff) {
     string str = buff;
-    cout << str << endl;
+    //cout << str << endl;
     EZServer::sendToClient(str);
 }
 

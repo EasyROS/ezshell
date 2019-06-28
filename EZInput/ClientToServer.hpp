@@ -12,6 +12,10 @@ public:
 
     string talk(string str);
 
+    void send(string str);
+
+    string recv();
+
     EZClient *Client;
 };
 

@@ -21,5 +21,5 @@ public:
 private:
     void *context;
     void *s;
-    char buffer[1024] = {0};
+    char buffer[1024 * 512] = {0};
 };

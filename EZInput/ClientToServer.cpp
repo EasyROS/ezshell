@@ -10,12 +10,21 @@ ClientToServer::ClientToServer() {
 }
 
 ClientToServer::~ClientToServer() {
-    delete(this->Client);
+    delete (this->Client);
     delete this;
 }
 
 string ClientToServer::talk(string str) {
-    this->Client->send( str);
+    this->Client->send(str);
+    this->Client->recv();
+    return this->Client->getrecv();
+}
+
+void ClientToServer::send(string str) {
+    this->Client->send(str);
+}
+
+string ClientToServer::recv() {
     this->Client->recv();
     return this->Client->getrecv();
 }
